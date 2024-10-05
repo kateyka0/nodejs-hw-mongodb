@@ -18,7 +18,6 @@ export const getContacts = async (req, res) => {
 export const getContact = async (req, res) => {
   const { contactId } = req.params;
 
-  // Перевірка на коректність ObjectId
   if (!mongoose.Types.ObjectId.isValid(contactId)) {
     return res.status(400).json({ message: 'Invalid contact ID format' });
   }
