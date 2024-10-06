@@ -1,9 +1,13 @@
 import mongoose from 'mongoose';
 
 const contactSchema = new mongoose.Schema({
-  name: String,
-  email: String,
-  phone: String,
+  name: { type: String, required: true },
+  phoneNumber: { type: String, required: true },
+  email: { type: String, required: true },
+  isFavourite: { type: Boolean, default: false },
+  contactType: { type: String, enum: ['personal', 'work'], required: true },
+}, {
+  timestamps: true, 
 });
 
 const Contact = mongoose.model('Contact', contactSchema);
