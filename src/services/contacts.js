@@ -1,16 +1,12 @@
-import mongoose from 'mongoose';
+import { ContactsCollection } from '../models/contact.js';
 
-const contactSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  phoneNumber: { type: String, required: true },
-  email: { type: String, required: true },
-  isFavourite: { type: Boolean, default: false },
-  contactType: { type: String, enum: ['personal', 'work'], required: true },
-}, {
-  timestamps: true,
-});
+export const getAllContacts = async () => {
+  const contacts = await ContactsCollection.find();
+  return contacts;
+};
 
-const Contact = mongoose.model('Contact', contactSchema);
-
-export default Contact; 
+export const getContactById = async (contactId) => {
+  const contact = await ContactsCollection.findById(contactId);
+  return contact;
+};
 
